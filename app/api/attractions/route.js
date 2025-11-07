@@ -1,14 +1,23 @@
 import { NextResponse } from "next/server"
-import pool from "@/utils/db"
+import supabase from "@/utils/db" // ใช้ client จาก utils/db.js
 
 // GET all attractions
 export async function GET() {
   try {
-    const [rows] = await pool.query("SELECT * FROM attractions ORDER BY id DESC")
+    // ดึงข้อมูลทั้งหมดจากตาราง 'attraction'
+    const { data, error } = await supabase
+      .from("attraction") // ชื่อตารางใน Supabase
+      .select("*")
+      .order("id", { ascending: false })
 
-    return NextResponse.json(rows, { status: 200 })
+    if (error) throw error
+
+    return NextResponse.json(data, { status: 200 })
   } catch (error) {
-    console.error("[v0] Error fetching attractions:", error)
-    return NextResponse.json({ error: "Failed to fetch attractions", details: error?.message || String(error) }, { status: 500 })
+    console.error("Error fetching attractions:", error)
+    return NextResponse.json(
+      { error: "Failed to fetch attractions", details: error?.message || String(error) },
+      { status: 500 }
+    )
   }
 }

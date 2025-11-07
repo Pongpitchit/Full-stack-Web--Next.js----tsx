@@ -25,7 +25,7 @@ export default function AttractionDetailPage() {
         const data = await res.json()
         setAttraction(data)
       } catch (err) {
-        console.error("[v0] Error fetching attraction:", err)
+        console.error("Error fetching attraction:", err)
         setError(err.message)
       } finally {
         setLoading(false)
