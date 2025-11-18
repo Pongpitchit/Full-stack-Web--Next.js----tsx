@@ -1,28 +1,39 @@
-import AttractionsFetcher from "@/components/AttractionsFetcher";
-import Layout from "@/components/Layout";
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { getUser } from '@/lib/auth'
 
-export default function AttractionsPage() {
+export default async function HomePage() {
+  const user = await getUser()
+
   return (
-    <Layout title="Home" description="Home">
-      <div className="min-h-screen">
-        <div className="bg-gradient-to-r from-[#008000] to-[#1B5E20] text-white py-16 px-4 mb-8 opacity-80 animate-fade-in">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-center mb-4">
-              <h1 className="text-5xl font-bold">Dashboard</h1>
-              <a 
-                href="/ballpython" 
-                className="bg-white text-green-700 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors shadow-lg"
-              >
-                🐍 Ball Python Gallery
-              </a>
-            </div>
-            <p className="text-xl text-white/90">
-              Explore amazing destinations around the world
-            </p>
-          </div>
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background to-secondary/20">
+      <div className="max-w-4xl mx-auto text-center space-y-8">
+        <div className="space-y-4">
+          <h1 className="text-5xl md:text-6xl font-bold text-balance">
+            Welcome to Your App
+          </h1>
+          <p className="text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
+            A modern authentication system with JWT tokens and secure user management
+          </p>
         </div>
-        <AttractionsFetcher />
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          {user ? (
+            <Button asChild size="lg" className="h-12 px-8 text-base">
+              <Link href="/dashboard">Go to Dashboard</Link>
+            </Button>
+          ) : (
+            <>
+              <Button asChild size="lg" className="h-12 px-8 text-base">
+                <Link href="/login">Sign in</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
+                <Link href="/register">Create account</Link>
+              </Button>
+            </>
+          )}
+        </div>
       </div>
-    </Layout>
-  );
+    </div>
+  )
 }

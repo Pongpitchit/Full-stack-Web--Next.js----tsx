@@ -14,15 +14,9 @@ export default function Layout({ title, description, children }: LayoutProps) {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl md:text-3xl font-bold text-white tracking-wide whitespace-nowrap">
-              DIT205 CRUD Web
+              DIT205 |Project Website
             </h1>
             <div className="flex items-center gap-2 md:gap-4 overflow-x-auto scrollbar-hide max-w-[60vw] md:max-w-none">
-              <a
-                href="/"
-                className="px-3 py-2 md:px-4 text-sm md:text-base bg-transparent hover:bg-white/10 text-white rounded-lg font-semibold transition-all duration-300 whitespace-nowrap"
-              >
-                Home
-              </a>
               <a
                 href="/01_state"
                 className="px-3 py-2 md:px-4 text-sm md:text-base bg-transparent hover:bg-white/10 text-white rounded-lg font-semibold transition-all duration-300 whitespace-nowrap"
@@ -52,6 +46,11 @@ export default function Layout({ title, description, children }: LayoutProps) {
                 className="px-3 py-2 md:px-4 text-sm md:text-base bg-transparent hover:bg-white/10 text-white rounded-lg font-semibold transition-all duration-300 whitespace-nowrap"
               >
                 Users
+              </a>
+              <a href="/user_stats"
+                className="px-3 py-2 md:px-4 text-sm md:text-base bg-transparent hover:bg-white/10 text-white rounded-lg font-semibold transition-all duration-300 whitespace-nowrap"
+              >
+                StatsUser
               </a>
             </div>
           </div>
